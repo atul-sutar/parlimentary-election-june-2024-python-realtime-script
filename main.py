@@ -79,8 +79,18 @@ def create_table_from_data_and_display_result(header: str, table_header: list, t
         else:
             pass
 
+    total_leading = 0
+    total_all = 0
+    totals_won = 0
+
     for row in table_data_cleaned:
         table.add_row(*row.values())
+        total_leading += int(row['Leading'])
+        total_all += int(row['Total'])
+        totals_won += int(row['Won'])
+
+    table.add_row("Sum", f"= {totals_won}", f"= { \
+                  total_leading}", f"= {total_all}")
 
     return table
 
